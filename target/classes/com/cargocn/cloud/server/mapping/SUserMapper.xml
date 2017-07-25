@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cargocn.cloud.server.dao.SUserMapper" >
+  <resultMap id="BaseResultMap" type="com.cargocn.cloud.web.bean.SUser" >
+    <id column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="bankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="bankName" property="bankname" jdbcType="VARCHAR" />
+    <result column="cerCode" property="cercode" jdbcType="VARCHAR" />
+    <result column="emailAddr" property="emailaddr" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="regDate" property="regdate" jdbcType="TIMESTAMP" />
+    <result column="userAddr" property="useraddr" jdbcType="VARCHAR" />
+    <result column="userCata" property="usercata" jdbcType="TINYINT" />
+    <result column="userCode" property="usercode" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="userPasswd" property="userpasswd" jdbcType="VARCHAR" />
+    <result column="userSex" property="usersex" jdbcType="VARCHAR" />
+    <result column="userStatus" property="userstatus" jdbcType="TINYINT" />
+    <result column="userTel" property="usertel" jdbcType="VARCHAR" />
+    <result column="userTel2" property="usertel2" jdbcType="VARCHAR" />
+    <result column="userType" property="usertype" jdbcType="TINYINT" />
+    <result column="validDate" property="validdate" jdbcType="TIMESTAMP" />
+    <result column="cityCodeId" property="citycodeid" jdbcType="BIGINT" />
+    <result column="companyId" property="companyid" jdbcType="BIGINT" />
+    <result column="provinceCodeId" property="provincecodeid" jdbcType="BIGINT" />
+    <result column="regUserId" property="reguserid" jdbcType="BIGINT" />
+    <result column="userFileId" property="userfileid" jdbcType="BIGINT" />
+    <result column="phoneId" property="phoneid" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cargocn.cloud.web.bean.SUser" extends="BaseResultMap" >
+    <result column="idCardPhoto" property="idcardphoto" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userId, bankAccount, bankName, cerCode, emailAddr, memo, regDate, userAddr, userCata, 
+    userCode, userName, userPasswd, userSex, userStatus, userTel, userTel2, userType, 
+    validDate, cityCodeId, companyId, provinceCodeId, regUserId, userFileId, phoneId
+  </sql>
+  <sql id="Blob_Column_List" >
+    idCardPhoto
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_s_user
+    where userId = #{userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_s_user
+    where userId = #{userid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cargocn.cloud.web.bean.SUser" >
+    insert into t_s_user (userId, bankAccount, bankName, 
+      cerCode, emailAddr, memo, 
+      regDate, userAddr, userCata, 
+      userCode, userName, userPasswd, 
+      userSex, userStatus, userTel, 
+      userTel2, userType, validDate, 
+      cityCodeId, companyId, provinceCodeId, 
+      regUserId, userFileId, phoneId, 
+      idCardPhoto)
+    values (#{userid,jdbcType=BIGINT}, #{bankaccount,jdbcType=VARCHAR}, #{bankname,jdbcType=VARCHAR}, 
+      #{cercode,jdbcType=VARCHAR}, #{emailaddr,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{regdate,jdbcType=TIMESTAMP}, #{useraddr,jdbcType=VARCHAR}, #{usercata,jdbcType=TINYINT}, 
+      #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{userpasswd,jdbcType=VARCHAR}, 
+      #{usersex,jdbcType=VARCHAR}, #{userstatus,jdbcType=TINYINT}, #{usertel,jdbcType=VARCHAR}, 
+      #{usertel2,jdbcType=VARCHAR}, #{usertype,jdbcType=TINYINT}, #{validdate,jdbcType=TIMESTAMP}, 
+      #{citycodeid,jdbcType=BIGINT}, #{companyid,jdbcType=BIGINT}, #{provincecodeid,jdbcType=BIGINT}, 
+      #{reguserid,jdbcType=BIGINT}, #{userfileid,jdbcType=BIGINT}, #{phoneid,jdbcType=BIGINT}, 
+      #{idcardphoto,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cargocn.cloud.web.bean.SUser" >
+    insert into t_s_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount,
+      </if>
+      <if test="bankname != null" >
+        bankName,
+      </if>
+      <if test="cercode != null" >
+        cerCode,
+      </if>
+      <if test="emailaddr != null" >
+        emailAddr,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="regdate != null" >
+        regDate,
+      </if>
+      <if test="useraddr != null" >
+        userAddr,
+      </if>
+      <if test="usercata != null" >
+        userCata,
+      </if>
+      <if test="usercode != null" >
+        userCode,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="userpasswd != null" >
+        userPasswd,
+      </if>
+      <if test="usersex != null" >
+        userSex,
+      </if>
+      <if test="userstatus != null" >
+        userStatus,
+      </if>
+      <if test="usertel != null" >
+        userTel,
+      </if>
+      <if test="usertel2 != null" >
+        userTel2,
+      </if>
+      <if test="usertype != null" >
+        userType,
+      </if>
+      <if test="validdate != null" >
+        validDate,
+      </if>
+      <if test="citycodeid != null" >
+        cityCodeId,
+      </if>
+      <if test="companyid != null" >
+        companyId,
+      </if>
+      <if test="provincecodeid != null" >
+        provinceCodeId,
+      </if>
+      <if test="reguserid != null" >
+        regUserId,
+      </if>
+      <if test="userfileid != null" >
+        userFileId,
+      </if>
+      <if test="phoneid != null" >
+        phoneId,
+      </if>
+      <if test="idcardphoto != null" >
+        idCardPhoto,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="cercode != null" >
+        #{cercode,jdbcType=VARCHAR},
+      </if>
+      <if test="emailaddr != null" >
+        #{emailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="regdate != null" >
+        #{regdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useraddr != null" >
+        #{useraddr,jdbcType=VARCHAR},
+      </if>
+      <if test="usercata != null" >
+        #{usercata,jdbcType=TINYINT},
+      </if>
+      <if test="usercode != null" >
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpasswd != null" >
+        #{userpasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null" >
+        #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="userstatus != null" >
+        #{userstatus,jdbcType=TINYINT},
+      </if>
+      <if test="usertel != null" >
+        #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel2 != null" >
+        #{usertel2,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=TINYINT},
+      </if>
+      <if test="validdate != null" >
+        #{validdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="citycodeid != null" >
+        #{citycodeid,jdbcType=BIGINT},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=BIGINT},
+      </if>
+      <if test="provincecodeid != null" >
+        #{provincecodeid,jdbcType=BIGINT},
+      </if>
+      <if test="reguserid != null" >
+        #{reguserid,jdbcType=BIGINT},
+      </if>
+      <if test="userfileid != null" >
+        #{userfileid,jdbcType=BIGINT},
+      </if>
+      <if test="phoneid != null" >
+        #{phoneid,jdbcType=BIGINT},
+      </if>
+      <if test="idcardphoto != null" >
+        #{idcardphoto,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cargocn.cloud.web.bean.SUser" >
+    update t_s_user
+    <set >
+      <if test="bankaccount != null" >
+        bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        bankName = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="cercode != null" >
+        cerCode = #{cercode,jdbcType=VARCHAR},
+      </if>
+      <if test="emailaddr != null" >
+        emailAddr = #{emailaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="regdate != null" >
+        regDate = #{regdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useraddr != null" >
+        userAddr = #{useraddr,jdbcType=VARCHAR},
+      </if>
+      <if test="usercata != null" >
+        userCata = #{usercata,jdbcType=TINYINT},
+      </if>
+      <if test="usercode != null" >
+        userCode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpasswd != null" >
+        userPasswd = #{userpasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null" >
+        userSex = #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="userstatus != null" >
+        userStatus = #{userstatus,jdbcType=TINYINT},
+      </if>
+      <if test="usertel != null" >
+        userTel = #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel2 != null" >
+        userTel2 = #{usertel2,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        userType = #{usertype,jdbcType=TINYINT},
+      </if>
+      <if test="validdate != null" >
+        validDate = #{validdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="citycodeid != null" >
+        cityCodeId = #{citycodeid,jdbcType=BIGINT},
+      </if>
+      <if test="companyid != null" >
+        companyId = #{companyid,jdbcType=BIGINT},
+      </if>
+      <if test="provincecodeid != null" >
+        provinceCodeId = #{provincecodeid,jdbcType=BIGINT},
+      </if>
+      <if test="reguserid != null" >
+        regUserId = #{reguserid,jdbcType=BIGINT},
+      </if>
+      <if test="userfileid != null" >
+        userFileId = #{userfileid,jdbcType=BIGINT},
+      </if>
+      <if test="phoneid != null" >
+        phoneId = #{phoneid,jdbcType=BIGINT},
+      </if>
+      <if test="idcardphoto != null" >
+        idCardPhoto = #{idcardphoto,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cargocn.cloud.web.bean.SUser" >
+    update t_s_user
+    set bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      bankName = #{bankname,jdbcType=VARCHAR},
+      cerCode = #{cercode,jdbcType=VARCHAR},
+      emailAddr = #{emailaddr,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      regDate = #{regdate,jdbcType=TIMESTAMP},
+      userAddr = #{useraddr,jdbcType=VARCHAR},
+      userCata = #{usercata,jdbcType=TINYINT},
+      userCode = #{usercode,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      userPasswd = #{userpasswd,jdbcType=VARCHAR},
+      userSex = #{usersex,jdbcType=VARCHAR},
+      userStatus = #{userstatus,jdbcType=TINYINT},
+      userTel = #{usertel,jdbcType=VARCHAR},
+      userTel2 = #{usertel2,jdbcType=VARCHAR},
+      userType = #{usertype,jdbcType=TINYINT},
+      validDate = #{validdate,jdbcType=TIMESTAMP},
+      cityCodeId = #{citycodeid,jdbcType=BIGINT},
+      companyId = #{companyid,jdbcType=BIGINT},
+      provinceCodeId = #{provincecodeid,jdbcType=BIGINT},
+      regUserId = #{reguserid,jdbcType=BIGINT},
+      userFileId = #{userfileid,jdbcType=BIGINT},
+      phoneId = #{phoneid,jdbcType=BIGINT},
+      idCardPhoto = #{idcardphoto,jdbcType=LONGVARBINARY}
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cargocn.cloud.web.bean.SUser" >
+    update t_s_user
+    set bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      bankName = #{bankname,jdbcType=VARCHAR},
+      cerCode = #{cercode,jdbcType=VARCHAR},
+      emailAddr = #{emailaddr,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      regDate = #{regdate,jdbcType=TIMESTAMP},
+      userAddr = #{useraddr,jdbcType=VARCHAR},
+      userCata = #{usercata,jdbcType=TINYINT},
+      userCode = #{usercode,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      userPasswd = #{userpasswd,jdbcType=VARCHAR},
+      userSex = #{usersex,jdbcType=VARCHAR},
+      userStatus = #{userstatus,jdbcType=TINYINT},
+      userTel = #{usertel,jdbcType=VARCHAR},
+      userTel2 = #{usertel2,jdbcType=VARCHAR},
+      userType = #{usertype,jdbcType=TINYINT},
+      validDate = #{validdate,jdbcType=TIMESTAMP},
+      cityCodeId = #{citycodeid,jdbcType=BIGINT},
+      companyId = #{companyid,jdbcType=BIGINT},
+      provinceCodeId = #{provincecodeid,jdbcType=BIGINT},
+      regUserId = #{reguserid,jdbcType=BIGINT},
+      userFileId = #{userfileid,jdbcType=BIGINT},
+      phoneId = #{phoneid,jdbcType=BIGINT}
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+</mapper>

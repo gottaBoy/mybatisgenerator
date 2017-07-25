@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cargocn.cloud.server.dao.SCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.cargocn.cloud.web.bean.SCompany" >
+    <id column="companyId" property="companyid" jdbcType="BIGINT" />
+    <result column="bankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="bankName" property="bankname" jdbcType="VARCHAR" />
+    <result column="comStatus" property="comstatus" jdbcType="TINYINT" />
+    <result column="companyAddr" property="companyaddr" jdbcType="VARCHAR" />
+    <result column="companyCars" property="companycars" jdbcType="INTEGER" />
+    <result column="companyCode" property="companycode" jdbcType="VARCHAR" />
+    <result column="companyContact" property="companycontact" jdbcType="VARCHAR" />
+    <result column="companyEmployees" property="companyemployees" jdbcType="INTEGER" />
+    <result column="companyFax" property="companyfax" jdbcType="VARCHAR" />
+    <result column="companyLegal" property="companylegal" jdbcType="VARCHAR" />
+    <result column="companyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="companySysCode" property="companysyscode" jdbcType="VARCHAR" />
+    <result column="companyTel" property="companytel" jdbcType="VARCHAR" />
+    <result column="contactAddr" property="contactaddr" jdbcType="VARCHAR" />
+    <result column="contactCerCode" property="contactcercode" jdbcType="VARCHAR" />
+    <result column="contactEmail" property="contactemail" jdbcType="VARCHAR" />
+    <result column="contactMobil" property="contactmobil" jdbcType="VARCHAR" />
+    <result column="contactTel" property="contacttel" jdbcType="VARCHAR" />
+    <result column="isConsignee" property="isconsignee" jdbcType="BIT" />
+    <result column="isDepartment" property="isdepartment" jdbcType="BIT" />
+    <result column="isLogistics" property="islogistics" jdbcType="BIT" />
+    <result column="isPlatform" property="isplatform" jdbcType="BIT" />
+    <result column="isShipper" property="isshipper" jdbcType="BIT" />
+    <result column="orgCode" property="orgcode" jdbcType="VARCHAR" />
+    <result column="taxCode" property="taxcode" jdbcType="VARCHAR" />
+    <result column="adminUserId" property="adminuserid" jdbcType="BIGINT" />
+    <result column="industry1CodeId" property="industry1codeid" jdbcType="BIGINT" />
+    <result column="industry2CodeId" property="industry2codeid" jdbcType="BIGINT" />
+    <result column="parentCompanyId" property="parentcompanyid" jdbcType="BIGINT" />
+    <result column="provinceCodeId" property="provincecodeid" jdbcType="BIGINT" />
+    <result column="regUserId" property="reguserid" jdbcType="BIGINT" />
+    <result column="companyFileId" property="companyfileid" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cargocn.cloud.web.bean.SCompanyWithBLOBs" extends="BaseResultMap" >
+    <result column="imgDmz" property="imgdmz" jdbcType="LONGVARBINARY" />
+    <result column="imgSwz" property="imgswz" jdbcType="LONGVARBINARY" />
+    <result column="imgYyzz" property="imgyyzz" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    companyId, bankAccount, bankName, comStatus, companyAddr, companyCars, companyCode, 
+    companyContact, companyEmployees, companyFax, companyLegal, companyName, companySysCode, 
+    companyTel, contactAddr, contactCerCode, contactEmail, contactMobil, contactTel, 
+    isConsignee, isDepartment, isLogistics, isPlatform, isShipper, orgCode, taxCode, 
+    adminUserId, industry1CodeId, industry2CodeId, parentCompanyId, provinceCodeId, regUserId, 
+    companyFileId
+  </sql>
+  <sql id="Blob_Column_List" >
+    imgDmz, imgSwz, imgYyzz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_s_company
+    where companyId = #{companyid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_s_company
+    where companyId = #{companyid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cargocn.cloud.web.bean.SCompanyWithBLOBs" >
+    insert into t_s_company (companyId, bankAccount, bankName, 
+      comStatus, companyAddr, companyCars, 
+      companyCode, companyContact, companyEmployees, 
+      companyFax, companyLegal, companyName, 
+      companySysCode, companyTel, contactAddr, 
+      contactCerCode, contactEmail, contactMobil, 
+      contactTel, isConsignee, isDepartment, 
+      isLogistics, isPlatform, isShipper, 
+      orgCode, taxCode, adminUserId, 
+      industry1CodeId, industry2CodeId, parentCompanyId, 
+      provinceCodeId, regUserId, companyFileId, 
+      imgDmz, imgSwz, imgYyzz
+      )
+    values (#{companyid,jdbcType=BIGINT}, #{bankaccount,jdbcType=VARCHAR}, #{bankname,jdbcType=VARCHAR}, 
+      #{comstatus,jdbcType=TINYINT}, #{companyaddr,jdbcType=VARCHAR}, #{companycars,jdbcType=INTEGER}, 
+      #{companycode,jdbcType=VARCHAR}, #{companycontact,jdbcType=VARCHAR}, #{companyemployees,jdbcType=INTEGER}, 
+      #{companyfax,jdbcType=VARCHAR}, #{companylegal,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, 
+      #{companysyscode,jdbcType=VARCHAR}, #{companytel,jdbcType=VARCHAR}, #{contactaddr,jdbcType=VARCHAR}, 
+      #{contactcercode,jdbcType=VARCHAR}, #{contactemail,jdbcType=VARCHAR}, #{contactmobil,jdbcType=VARCHAR}, 
+      #{contacttel,jdbcType=VARCHAR}, #{isconsignee,jdbcType=BIT}, #{isdepartment,jdbcType=BIT}, 
+      #{islogistics,jdbcType=BIT}, #{isplatform,jdbcType=BIT}, #{isshipper,jdbcType=BIT}, 
+      #{orgcode,jdbcType=VARCHAR}, #{taxcode,jdbcType=VARCHAR}, #{adminuserid,jdbcType=BIGINT}, 
+      #{industry1codeid,jdbcType=BIGINT}, #{industry2codeid,jdbcType=BIGINT}, #{parentcompanyid,jdbcType=BIGINT}, 
+      #{provincecodeid,jdbcType=BIGINT}, #{reguserid,jdbcType=BIGINT}, #{companyfileid,jdbcType=BIGINT}, 
+      #{imgdmz,jdbcType=LONGVARBINARY}, #{imgswz,jdbcType=LONGVARBINARY}, #{imgyyzz,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cargocn.cloud.web.bean.SCompanyWithBLOBs" >
+    insert into t_s_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyid != null" >
+        companyId,
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount,
+      </if>
+      <if test="bankname != null" >
+        bankName,
+      </if>
+      <if test="comstatus != null" >
+        comStatus,
+      </if>
+      <if test="companyaddr != null" >
+        companyAddr,
+      </if>
+      <if test="companycars != null" >
+        companyCars,
+      </if>
+      <if test="companycode != null" >
+        companyCode,
+      </if>
+      <if test="companycontact != null" >
+        companyContact,
+      </if>
+      <if test="companyemployees != null" >
+        companyEmployees,
+      </if>
+      <if test="companyfax != null" >
+        companyFax,
+      </if>
+      <if test="companylegal != null" >
+        companyLegal,
+      </if>
+      <if test="companyname != null" >
+        companyName,
+      </if>
+      <if test="companysyscode != null" >
+        companySysCode,
+      </if>
+      <if test="companytel != null" >
+        companyTel,
+      </if>
+      <if test="contactaddr != null" >
+        contactAddr,
+      </if>
+      <if test="contactcercode != null" >
+        contactCerCode,
+      </if>
+      <if test="contactemail != null" >
+        contactEmail,
+      </if>
+      <if test="contactmobil != null" >
+        contactMobil,
+      </if>
+      <if test="contacttel != null" >
+        contactTel,
+      </if>
+      <if test="isconsignee != null" >
+        isConsignee,
+      </if>
+      <if test="isdepartment != null" >
+        isDepartment,
+      </if>
+      <if test="islogistics != null" >
+        isLogistics,
+      </if>
+      <if test="isplatform != null" >
+        isPlatform,
+      </if>
+      <if test="isshipper != null" >
+        isShipper,
+      </if>
+      <if test="orgcode != null" >
+        orgCode,
+      </if>
+      <if test="taxcode != null" >
+        taxCode,
+      </if>
+      <if test="adminuserid != null" >
+        adminUserId,
+      </if>
+      <if test="industry1codeid != null" >
+        industry1CodeId,
+      </if>
+      <if test="industry2codeid != null" >
+        industry2CodeId,
+      </if>
+      <if test="parentcompanyid != null" >
+        parentCompanyId,
+      </if>
+      <if test="provincecodeid != null" >
+        provinceCodeId,
+      </if>
+      <if test="reguserid != null" >
+        regUserId,
+      </if>
+      <if test="companyfileid != null" >
+        companyFileId,
+      </if>
+      <if test="imgdmz != null" >
+        imgDmz,
+      </if>
+      <if test="imgswz != null" >
+        imgSwz,
+      </if>
+      <if test="imgyyzz != null" >
+        imgYyzz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyid != null" >
+        #{companyid,jdbcType=BIGINT},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="comstatus != null" >
+        #{comstatus,jdbcType=TINYINT},
+      </if>
+      <if test="companyaddr != null" >
+        #{companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companycars != null" >
+        #{companycars,jdbcType=INTEGER},
+      </if>
+      <if test="companycode != null" >
+        #{companycode,jdbcType=VARCHAR},
+      </if>
+      <if test="companycontact != null" >
+        #{companycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="companyemployees != null" >
+        #{companyemployees,jdbcType=INTEGER},
+      </if>
+      <if test="companyfax != null" >
+        #{companyfax,jdbcType=VARCHAR},
+      </if>
+      <if test="companylegal != null" >
+        #{companylegal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companysyscode != null" >
+        #{companysyscode,jdbcType=VARCHAR},
+      </if>
+      <if test="companytel != null" >
+        #{companytel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactaddr != null" >
+        #{contactaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="contactcercode != null" >
+        #{contactcercode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactemail != null" >
+        #{contactemail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactmobil != null" >
+        #{contactmobil,jdbcType=VARCHAR},
+      </if>
+      <if test="contacttel != null" >
+        #{contacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="isconsignee != null" >
+        #{isconsignee,jdbcType=BIT},
+      </if>
+      <if test="isdepartment != null" >
+        #{isdepartment,jdbcType=BIT},
+      </if>
+      <if test="islogistics != null" >
+        #{islogistics,jdbcType=BIT},
+      </if>
+      <if test="isplatform != null" >
+        #{isplatform,jdbcType=BIT},
+      </if>
+      <if test="isshipper != null" >
+        #{isshipper,jdbcType=BIT},
+      </if>
+      <if test="orgcode != null" >
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxcode != null" >
+        #{taxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="adminuserid != null" >
+        #{adminuserid,jdbcType=BIGINT},
+      </if>
+      <if test="industry1codeid != null" >
+        #{industry1codeid,jdbcType=BIGINT},
+      </if>
+      <if test="industry2codeid != null" >
+        #{industry2codeid,jdbcType=BIGINT},
+      </if>
+      <if test="parentcompanyid != null" >
+        #{parentcompanyid,jdbcType=BIGINT},
+      </if>
+      <if test="provincecodeid != null" >
+        #{provincecodeid,jdbcType=BIGINT},
+      </if>
+      <if test="reguserid != null" >
+        #{reguserid,jdbcType=BIGINT},
+      </if>
+      <if test="companyfileid != null" >
+        #{companyfileid,jdbcType=BIGINT},
+      </if>
+      <if test="imgdmz != null" >
+        #{imgdmz,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="imgswz != null" >
+        #{imgswz,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="imgyyzz != null" >
+        #{imgyyzz,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cargocn.cloud.web.bean.SCompanyWithBLOBs" >
+    update t_s_company
+    <set >
+      <if test="bankaccount != null" >
+        bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        bankName = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="comstatus != null" >
+        comStatus = #{comstatus,jdbcType=TINYINT},
+      </if>
+      <if test="companyaddr != null" >
+        companyAddr = #{companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="companycars != null" >
+        companyCars = #{companycars,jdbcType=INTEGER},
+      </if>
+      <if test="companycode != null" >
+        companyCode = #{companycode,jdbcType=VARCHAR},
+      </if>
+      <if test="companycontact != null" >
+        companyContact = #{companycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="companyemployees != null" >
+        companyEmployees = #{companyemployees,jdbcType=INTEGER},
+      </if>
+      <if test="companyfax != null" >
+        companyFax = #{companyfax,jdbcType=VARCHAR},
+      </if>
+      <if test="companylegal != null" >
+        companyLegal = #{companylegal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companysyscode != null" >
+        companySysCode = #{companysyscode,jdbcType=VARCHAR},
+      </if>
+      <if test="companytel != null" >
+        companyTel = #{companytel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactaddr != null" >
+        contactAddr = #{contactaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="contactcercode != null" >
+        contactCerCode = #{contactcercode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactemail != null" >
+        contactEmail = #{contactemail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactmobil != null" >
+        contactMobil = #{contactmobil,jdbcType=VARCHAR},
+      </if>
+      <if test="contacttel != null" >
+        contactTel = #{contacttel,jdbcType=VARCHAR},
+      </if>
+      <if test="isconsignee != null" >
+        isConsignee = #{isconsignee,jdbcType=BIT},
+      </if>
+      <if test="isdepartment != null" >
+        isDepartment = #{isdepartment,jdbcType=BIT},
+      </if>
+      <if test="islogistics != null" >
+        isLogistics = #{islogistics,jdbcType=BIT},
+      </if>
+      <if test="isplatform != null" >
+        isPlatform = #{isplatform,jdbcType=BIT},
+      </if>
+      <if test="isshipper != null" >
+        isShipper = #{isshipper,jdbcType=BIT},
+      </if>
+      <if test="orgcode != null" >
+        orgCode = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxcode != null" >
+        taxCode = #{taxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="adminuserid != null" >
+        adminUserId = #{adminuserid,jdbcType=BIGINT},
+      </if>
+      <if test="industry1codeid != null" >
+        industry1CodeId = #{industry1codeid,jdbcType=BIGINT},
+      </if>
+      <if test="industry2codeid != null" >
+        industry2CodeId = #{industry2codeid,jdbcType=BIGINT},
+      </if>
+      <if test="parentcompanyid != null" >
+        parentCompanyId = #{parentcompanyid,jdbcType=BIGINT},
+      </if>
+      <if test="provincecodeid != null" >
+        provinceCodeId = #{provincecodeid,jdbcType=BIGINT},
+      </if>
+      <if test="reguserid != null" >
+        regUserId = #{reguserid,jdbcType=BIGINT},
+      </if>
+      <if test="companyfileid != null" >
+        companyFileId = #{companyfileid,jdbcType=BIGINT},
+      </if>
+      <if test="imgdmz != null" >
+        imgDmz = #{imgdmz,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="imgswz != null" >
+        imgSwz = #{imgswz,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="imgyyzz != null" >
+        imgYyzz = #{imgyyzz,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where companyId = #{companyid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cargocn.cloud.web.bean.SCompanyWithBLOBs" >
+    update t_s_company
+    set bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      bankName = #{bankname,jdbcType=VARCHAR},
+      comStatus = #{comstatus,jdbcType=TINYINT},
+      companyAddr = #{companyaddr,jdbcType=VARCHAR},
+      companyCars = #{companycars,jdbcType=INTEGER},
+      companyCode = #{companycode,jdbcType=VARCHAR},
+      companyContact = #{companycontact,jdbcType=VARCHAR},
+      companyEmployees = #{companyemployees,jdbcType=INTEGER},
+      companyFax = #{companyfax,jdbcType=VARCHAR},
+      companyLegal = #{companylegal,jdbcType=VARCHAR},
+      companyName = #{companyname,jdbcType=VARCHAR},
+      companySysCode = #{companysyscode,jdbcType=VARCHAR},
+      companyTel = #{companytel,jdbcType=VARCHAR},
+      contactAddr = #{contactaddr,jdbcType=VARCHAR},
+      contactCerCode = #{contactcercode,jdbcType=VARCHAR},
+      contactEmail = #{contactemail,jdbcType=VARCHAR},
+      contactMobil = #{contactmobil,jdbcType=VARCHAR},
+      contactTel = #{contacttel,jdbcType=VARCHAR},
+      isConsignee = #{isconsignee,jdbcType=BIT},
+      isDepartment = #{isdepartment,jdbcType=BIT},
+      isLogistics = #{islogistics,jdbcType=BIT},
+      isPlatform = #{isplatform,jdbcType=BIT},
+      isShipper = #{isshipper,jdbcType=BIT},
+      orgCode = #{orgcode,jdbcType=VARCHAR},
+      taxCode = #{taxcode,jdbcType=VARCHAR},
+      adminUserId = #{adminuserid,jdbcType=BIGINT},
+      industry1CodeId = #{industry1codeid,jdbcType=BIGINT},
+      industry2CodeId = #{industry2codeid,jdbcType=BIGINT},
+      parentCompanyId = #{parentcompanyid,jdbcType=BIGINT},
+      provinceCodeId = #{provincecodeid,jdbcType=BIGINT},
+      regUserId = #{reguserid,jdbcType=BIGINT},
+      companyFileId = #{companyfileid,jdbcType=BIGINT},
+      imgDmz = #{imgdmz,jdbcType=LONGVARBINARY},
+      imgSwz = #{imgswz,jdbcType=LONGVARBINARY},
+      imgYyzz = #{imgyyzz,jdbcType=LONGVARBINARY}
+    where companyId = #{companyid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cargocn.cloud.web.bean.SCompany" >
+    update t_s_company
+    set bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      bankName = #{bankname,jdbcType=VARCHAR},
+      comStatus = #{comstatus,jdbcType=TINYINT},
+      companyAddr = #{companyaddr,jdbcType=VARCHAR},
+      companyCars = #{companycars,jdbcType=INTEGER},
+      companyCode = #{companycode,jdbcType=VARCHAR},
+      companyContact = #{companycontact,jdbcType=VARCHAR},
+      companyEmployees = #{companyemployees,jdbcType=INTEGER},
+      companyFax = #{companyfax,jdbcType=VARCHAR},
+      companyLegal = #{companylegal,jdbcType=VARCHAR},
+      companyName = #{companyname,jdbcType=VARCHAR},
+      companySysCode = #{companysyscode,jdbcType=VARCHAR},
+      companyTel = #{companytel,jdbcType=VARCHAR},
+      contactAddr = #{contactaddr,jdbcType=VARCHAR},
+      contactCerCode = #{contactcercode,jdbcType=VARCHAR},
+      contactEmail = #{contactemail,jdbcType=VARCHAR},
+      contactMobil = #{contactmobil,jdbcType=VARCHAR},
+      contactTel = #{contacttel,jdbcType=VARCHAR},
+      isConsignee = #{isconsignee,jdbcType=BIT},
+      isDepartment = #{isdepartment,jdbcType=BIT},
+      isLogistics = #{islogistics,jdbcType=BIT},
+      isPlatform = #{isplatform,jdbcType=BIT},
+      isShipper = #{isshipper,jdbcType=BIT},
+      orgCode = #{orgcode,jdbcType=VARCHAR},
+      taxCode = #{taxcode,jdbcType=VARCHAR},
+      adminUserId = #{adminuserid,jdbcType=BIGINT},
+      industry1CodeId = #{industry1codeid,jdbcType=BIGINT},
+      industry2CodeId = #{industry2codeid,jdbcType=BIGINT},
+      parentCompanyId = #{parentcompanyid,jdbcType=BIGINT},
+      provinceCodeId = #{provincecodeid,jdbcType=BIGINT},
+      regUserId = #{reguserid,jdbcType=BIGINT},
+      companyFileId = #{companyfileid,jdbcType=BIGINT}
+    where companyId = #{companyid,jdbcType=BIGINT}
+  </update>
+</mapper>
